@@ -9,9 +9,12 @@ class Board extends Component {
       stickyCount: 0,
       stickyText: 'This is a Sample',
     }
+    this.addNote = this.addNote.bind(this);
+    this.deleteNote = this.deleteNote.bind(this);
     this.textHandler = this.textHandler.bind(this);
-    this.toggleMove = this.toggleMove.bind(this);
     this.zoomHandler = this.zoomHandler.bind(this);
+    this.toggleMove = this.toggleMove.bind(this);
+    this.animate = this.animate.bind(this);
   }
 
   componentDidMount() {
@@ -35,7 +38,8 @@ class Board extends Component {
 
   zoomHandler() {
     // Handle Zoom into Modal View
-    let newView = 'modal';
+    if (this.view === 'dash') let newView = 'modal';
+    else let newView = 'dash';
     this.setState({ view: newView });
   }
 
