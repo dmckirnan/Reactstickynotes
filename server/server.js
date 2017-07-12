@@ -1,37 +1,21 @@
-import React, { Component } from 'react';
+const http = require('http');
+const path = require('path');
+const fs = require('fs');
+const express = require('express');
+const app = express();
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      view: 'login',
-      likesCount: 0,
-    }
-    this.onLike = this.onLike.bind(this);
-  }
+const PORT = 4000;
+// const bodyparser = require('body-parser');
+// const cookieparser = require('cookie-parser');
 
-  componentDidMount() {
+// app.use(cookieparser());
+app.use('/static', express.static(path.join(__dirname, '..', 'build')));
+// app.use(bodyparser.urlencoded({ extended: true }));
+// app.use(bodyparser.json());
 
-  }
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build/index.html'));
+})
 
-  onLike() {
-    let newLikesCount = this.state.likesCount + 1;
-    this.setState({ likesCount: newLikesCount });
-  }
-
-  loginSuccess() {
-    this.setState({ view: 'dash' });
-  }
-
-
-  render() {
-    return (
-      <div>
-        <p>Hello React!</p>
-        <Counter likesCount = {this.state.likesCount} onLike = {this.onLike}/>
-      </div>
-    )
-  }
-}
-
-export default App;
+app.listen(PORT);
+console.log('Listening on Port 4000');
