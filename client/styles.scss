@@ -1,0 +1,46 @@
+#title {
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: center;
+}
+
+#addNoteContainer {
+  float: right;
+}
+
+#addNoteContainer button {
+  background-color: lightblue;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+#addNoteContainer button:hover {
+  background-color: purple;
+  color: white,
+}
+
+#deleteNoteContainer {
+  float: right;
+}
+
+.deleteNoteButton {
+  background-color: red;
+  border: 1px solid red;
+  border-radius: 5px;
+  color: white;
+  float: right;
+}
+
+.note {
+  width: 200px;
+  height: 200px;
+  background-color: yellow;
+  color: black;
+  border: 3px solid yellow;
+}
+
+.noteText {
+  margin-bottom: 20px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
