@@ -56,6 +56,11 @@ class Board extends Component {
 
   addNote(event) {
     let notes = this.state.notes;
+    // let newNote = {
+    //   id: i,
+    //   title: 'Note # ' + i,
+    //   text: 'Write Something'
+    // }
     let i = this.state.i;
     i += 1;
     let title = 'Note #' + i;
@@ -93,7 +98,8 @@ class Board extends Component {
   }
 
   editNote(e) {
-    e.text = "Test";
+    let notes = this.state.notes;
+
   }
 
   textHandler(e, id) {
