@@ -1,19 +1,36 @@
 import React, { Component } from 'react';
 import Modal from './Modal.jsx';
 import Note from './Note.jsx';
-import AddNote from './AddNote.jsx';
-import Styles from '../styles.scss';
+import Styles from '../styles/styles.scss';
+
+
+/*
+  Current Role of Board:
+
+  1) Parent Component / Top Level Component / State Store
+  2) Contains All Necessary Methods for Note Add, Remove, Text Edit, Modal Toggle, Animation
+  3) Renders AddNoteButton, Note, and Modal
+
+  Current Issues:
+
+  1) Cannot Add New Notes
+  2) Cannot Remove New Notes
+  3) Lacks Styling
+  4) Modal is not an actual Modal, it's simply another view.
+  5) Animation Does Not Yet Exist
+
+*/
 
 class Board extends Component {
   constructor() {
     super();
     this.state = {
       view: 'dash',
-      modalVisible: false,
+      modal: false,
       notes: [],
-      noteCount: 1,
-      noteText: 'This is a Sample',
     }
+
+    // Binds
     this.toggleModal = this.toggleModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
@@ -26,50 +43,43 @@ class Board extends Component {
     this.zoomHandler = this.zoomHandler.bind(this);
   }
 
-  /*
-    1 - Modal Method still non-functional & non-styled
-    2 - Proper management and tracking of add and remove methods for notes (indexes, etc);
-    3 - Actually add and remove notes
-    4 - Still no idea how to make notes moveable
-    5 - Styling
-    6 - Animations?
-    7 - Styling for main view and modal view
-
-  */
-
   componentDidMount() {
     // Check for Re-Renders
   }
 
   toggleModal() {
     if (this.state.modalVisible === false) {
-      this.setState({ modalVisible: true });
+      this.setState({ modal: true });
     } else {
-      this.setState({ modalVisible: false });
+      this.setState({ modal: false });
     }
   }
 
-  addNote(title, text) {
+  addNote(event) {
     let notes = this.state.notes;
-    let newNote = {
-      title: title,
-      text: text
-    }
-    notes.push(newNote);
-    this.setState({ notes: notes })
+    this.setState({ notes: notes.concat(<div className='note'><Note key={notes.length} deleteNote={this.deleteNote} toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></div>) })
   }
 
   deleteNote(id) {
     let notes = this.state.notes;
-    let index = notes.findIndex((x) => x.id === id);
+    let index = notes.filter((x) => x.id === id);
     notes.splice(index, 1);
     this.setState({ notes: notes });
   }
 
-  textHandler(e) {
+  editNote(e, index) {
+    e.preventDefault();
+
+    let newNotes = this.state.notes;
+    newNotes[index] = e.target.value;
+    this.setState({ notes: newNotes });
+  }
+
+  textHandler(e, id) {
     // Handle Specific Note Text Updates
     e.preventDefault();
     let newText = e.target.value;
+    
     this.setState({ noteText: newText });
   }
 
@@ -106,31 +116,31 @@ class Board extends Component {
 
 
   render() {
-    if (this.state.modalVisible === false) {
-      return (
-        <div id="board">
-          <h1 id="title"> Stick It to Me</h1>
-          <div id="addNoteContainer" style={Styles.addNoteContainer}>
-            <AddNote addNote={this.addNote} />
-          </div>
-          <p>Here's a Sample Sticky Note!</p>
-          <div className="note">
-            <Note deleteNote={this.deleteNote} toggleModal={this.toggleModal} textHandler={this.textHandler} noteText={this.state.noteText} notes={this.state.notes} />
+    // if (this.state.modal === false) {
+    return (
+      <div id="board">
+        <h1 id="title"> Stick It to Me</h1>
+        <div id="addNoteContainer" style={Styles.addNoteContainer}>
+          <div>
+            <button id='addNoteButton' onClick={this.addNote}>Add A Note</button>
           </div>
         </div>
-      )
-    } else {
-      return (
-        <div>
-          <button onClick={() => this.toggleModal()}>Open modal</button>
-          <Modal modalVisible={this.state.modalVisible} toggleModal={() => this.toggleModal()}>
-            <h1>Modal title</h1>
-            <p>hello</p>
-            <p><button onClick={() => this.toggleModal()}>Close</button></p>
-          </Modal>
-        </div>
-      )
-    }
+        <p>Here's a Sample Sticky Note!</p>
+        {this.state.notes}
+      </div>
+    )
+    // } else {
+    //   return (
+    //     <div>
+    //       <button onClick={() => this.toggleModal()}>Open modal</button>
+    //       <Modal modal={this.state.modal} toggleModal={() => this.toggleModal()}>
+    //         <h1>Modal title</h1>
+    //         <p>hello</p>
+    //         <p><button onClick={() => this.toggleModal()}>Close</button></p>
+    //       </Modal>
+    //     </div>
+    //   )
+    // }
   }
 }
 

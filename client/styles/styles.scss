@@ -1,3 +1,7 @@
+html {
+  background-color: gainsboro;
+}
+
 #title {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   padding-bottom: 10px;
@@ -10,6 +14,7 @@
 
 #addNoteContainer {
   float: right;
+  margin-bottom: 10px;
 }
 
 #addNoteContainer button {
@@ -41,6 +46,7 @@
   background-color: yellow;
   color: black;
   border: 3px solid yellow;
+  display: inline-block;
 }
 
 .noteText {
