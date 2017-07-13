@@ -1,5 +1,6 @@
 import React from 'react';
 import Styles from '../styles/Note.scss';
+import Draggable from 'react-draggable';
 
 /*
 
@@ -21,6 +22,9 @@ import Styles from '../styles/Note.scss';
 
 const Note = props => {
   return (
+    // <Draggable handle="strong">
+    //   <div className="box no-cursor">
+    //     <strong className="cursor">Drag</strong>
     <div id="noteContainer">
       <div className="deleteNoteContainer">
         <button className="deleteNoteButton" onClick={() => props.deleteNote(props.id)}>X</button>
@@ -36,6 +40,8 @@ const Note = props => {
         <button className="editButton" onClick={props.toggleModal}>Edit</button>
       </div>
     </div>
+    //   </div>
+    // </Draggable>
   )
 }
 

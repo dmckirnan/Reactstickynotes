@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Draggable from 'react-draggable';
+
 import Modal from './Modal.jsx';
 import Note from './Note.jsx';
 import Styles from '../styles/styles.scss';
@@ -45,7 +47,7 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    // Check for Re-Renders
+    
   }
 
   addNote(event) {
@@ -116,7 +118,7 @@ class Board extends Component {
 
 
   toggleMove() {
-    // Future Handler to Drag / Drop 
+    $
   }
 
 
