@@ -16,11 +16,10 @@ import NoteStyles from '../styles/Note.scss';
 
   Current Issues:
 
-  1) Cannot Add New Notes
-  2) Cannot Remove New Notes
-  3) Lacks Styling
-  4) Modal is not an actual Modal, it's simply another view.
-  5) Animation Does Not Yet Exist
+  1) Lacks Styling
+  2) Modal is not an actual Modal, it's simply another view.
+  3) Drag and Drop Functionality Not Yet Done
+  4) Animation Does Not Yet Exist
 
 */
 

@@ -9,13 +9,12 @@ import Draggable from 'react-draggable';
   1) Serves as the Note Component Rendered with every new Note Creation
   2) Renders DeleteNote Button
   3) Renders Edit Button which Toggles Modal View
-  4) Renders NoteController (Use not Defined Yet)
 
 
   Current Issues:
 
-  1) Notes Array is Not Being Passed Down Correctly
-  2) Need Decision on Proper Way to Manage Add/Removal as well as tracking Indexes
+  1) Indexing system may lead to issues at scale
+  2) Indexes do not readjust upon delete
   3) No Modal Animation or functional Modal yet
 
 */
