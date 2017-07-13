@@ -1,7 +1,11 @@
 #title {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-bottom: 10px;
   margin: 0 auto;
   text-align: center;
   vertical-align: center;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
 }
 
 #addNoteContainer {
@@ -40,7 +44,32 @@
 }
 
 .noteText {
-  margin-bottom: 20px;
   border: 1px solid black;
   border-radius: 3px;
+}
+
+.editButton {
+  float: right;
+}
+
+.modal {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -150px;
+  margin-left: -150px;
+  z-index: 9999;
+  background: yellow;
+}
+
+.backdrop {
+  position: 'absolute'; 
+  width: '100%';
+  height: '100%';
+  top: '0px';
+  left: '0px';
+  z-index: '9998';
+  background: 'rgba(0, 0, 0, 0.3)'
 }
