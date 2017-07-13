@@ -1,5 +1,9 @@
 html {
-  background-color: gainsboro;
+  font-family:arial,sans-serif;
+  font-size:100%;
+  margin:3px;
+  background:#666;
+  color:#fff;
 }
 
 #title {
@@ -38,44 +42,4 @@ html {
   border-radius: 5px;
   color: white;
   float: right;
-}
-
-.note {
-  width: 200px;
-  height: 200px;
-  background-color: yellow;
-  color: black;
-  border: 3px solid yellow;
-  display: inline-block;
-}
-
-.noteText {
-  border: 1px solid black;
-  border-radius: 3px;
-}
-
-.editButton {
-  float: right;
-}
-
-.modal {
-  width: 300px;
-  height: 300px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -150px;
-  margin-left: -150px;
-  z-index: 9999;
-  background: yellow;
-}
-
-.backdrop {
-  position: 'absolute'; 
-  width: '100%';
-  height: '100%';
-  top: '0px';
-  left: '0px';
-  z-index: '9998';
-  background: 'rgba(0, 0, 0, 0.3)'
 }

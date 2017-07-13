@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from '../styles/styles.scss';
+import Styles from '../styles/Note.scss';
 
 /*
 
@@ -23,11 +23,18 @@ const Note = props => {
   return (
     <div id="noteContainer">
       <div className="deleteNoteContainer">
-        <button className="deleteNoteButton" onClick={props.deleteNote}>X</button>
+        <button className="deleteNoteButton" onClick={() => props.deleteNote(props.id)}>X</button>
       </div>
-      <input className="noteText" type="text" value={props.notes.text} onChange={props.textHandler}></input>
-      <button className="editButton" onClick={props.toggleModal}>Edit</button>
-      {/*<div className="noteTextDisplay">{props.notes.text}</div>*/}
+      <h2>{props.title}</h2>
+      {/*<div className="textEditContainer">
+        <input className="noteText" type="text" value={props.notes.text} onChange={props.textHandler}></input>
+      </div>*/}
+      <div className="textContainer">
+        <p className="text">{props.text}</p>
+      </div>
+      <div className="editContainer">
+        <button className="editButton" onClick={props.toggleModal}>Edit</button>
+      </div>
     </div>
   )
 }

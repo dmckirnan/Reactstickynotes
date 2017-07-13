@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Modal from './Modal.jsx';
 import Note from './Note.jsx';
 import Styles from '../styles/styles.scss';
+import NoteStyles from '../styles/Note.scss';
 
 
 /*
@@ -25,6 +26,7 @@ class Board extends Component {
   constructor() {
     super();
     this.state = {
+      i: 0,
       view: 'dash',
       modal: false,
       notes: [],
@@ -38,13 +40,34 @@ class Board extends Component {
     this.animate = this.animate.bind(this);
 
 
-    this.editHandler = this.editHandler.bind(this);
+    this.editNote = this.editNote.bind(this);
     this.textHandler = this.textHandler.bind(this);
-    this.zoomHandler = this.zoomHandler.bind(this);
   }
 
   componentDidMount() {
     // Check for Re-Renders
+  }
+
+  addNote(event) {
+    let notes = this.state.notes;
+    let i = this.state.i;
+    i += 1;
+    let title = 'Note #' + i;
+    let text = 'Write Something!'
+    notes.push(<li key={i} className='note'><Note id={i} 
+    title={title} text={text} deleteNote={this.deleteNote} toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></li>);
+
+    this.setState({ notes: notes, i: i });
+  }
+
+  deleteNote(e) {
+    e = e.toString();
+    let notes = this.state.notes;
+    notes = notes.filter(x => {
+      return x.key !== e;
+    });
+
+    this.setState({ notes: notes });
   }
 
   toggleModal() {
@@ -55,19 +78,14 @@ class Board extends Component {
     }
   }
 
-  addNote(event) {
+  editTitle(e, index) {
+
+    e.preventDefault();
     let notes = this.state.notes;
-    this.setState({ notes: notes.concat(<div className='note'><Note key={notes.length} deleteNote={this.deleteNote} toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></div>) })
+
   }
 
-  deleteNote(id) {
-    let notes = this.state.notes;
-    let index = notes.filter((x) => x.id === id);
-    notes.splice(index, 1);
-    this.setState({ notes: notes });
-  }
-
-  editNote(e, index) {
+  editNote(e) {
     e.preventDefault();
 
     let newNotes = this.state.notes;
@@ -79,9 +97,11 @@ class Board extends Component {
     // Handle Specific Note Text Updates
     e.preventDefault();
     let newText = e.target.value;
-    
+    let target = notes.filter((x) => x.id === id);
+
     this.setState({ noteText: newText });
   }
+
 
   editHandler() {
     let newView = this.state.view;
@@ -92,16 +112,6 @@ class Board extends Component {
       newView = 'dash';
       this.setState({ view: newView });
     }
-  }
-
-  zoomHandler() {
-    // Handle Zoom into Modal View
-    if (this.state.view === 'dash') {
-      let newView = 'modal';
-    } else {
-      let newView = 'dash';
-    }
-    this.setState({ view: newView });
   }
 
 
@@ -125,8 +135,9 @@ class Board extends Component {
             <button id='addNoteButton' onClick={this.addNote}>Add A Note</button>
           </div>
         </div>
-        <p>Here's a Sample Sticky Note!</p>
-        {this.state.notes}
+        <ul id="listContainer">
+          {this.state.notes}
+        </ul>
       </div>
     )
     // } else {

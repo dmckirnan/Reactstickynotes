@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from '../styles/styles.scss';
+import Styles from '../styles/Modal.scss';
 
 /*
 
