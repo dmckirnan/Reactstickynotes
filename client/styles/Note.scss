@@ -4,8 +4,13 @@
 }
 
 .noteContainer {
-  height: 400px;
-  width: 400px;
+  // width: 300px;
+  // height: 300px;
+}
+
+.noteTitle {
+  font-size:140%;
+  font-weight:bold;
 }
 
 .note {
@@ -69,12 +74,12 @@
 }
 
 .editContainer {
-  justify-content: space-between;
-  flex-direction: column;
-  display: flex;
+  // justify-content: space-between;
+  // flex-direction: column;
+  // display: flex;
 }
 
 .editButton {
-  justify-content: flex-end;
-  display: flex;
+  // justify-content: flex-end;
+  // display: flex;
 }

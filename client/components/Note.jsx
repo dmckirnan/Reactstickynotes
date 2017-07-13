@@ -24,11 +24,11 @@ const Note = props => {
     // <Draggable handle="strong">
     //   <div className="box no-cursor">
     //     <strong className="cursor">Drag</strong>
-    <div id="noteContainer">
+    <div className="noteContainer">
       <div className="deleteNoteContainer">
         <button className="deleteNoteButton" onClick={() => props.deleteNote(props.id)}>X</button>
       </div>
-      <h2>{props.title}</h2>
+      <h2 className="noteTitle">{props.title}</h2>
       {/*<div className="textEditContainer">
         <input className="noteText" type="text" value={props.notes.text} onChange={props.textHandler}></input>
       </div>*/}
@@ -36,7 +36,7 @@ const Note = props => {
         <p className="text">{props.text}</p>
       </div>
       <div className="editContainer">
-        <button className="editButton" onClick={props.toggleModal}>Edit</button>
+        <button className="editButton" onClick={() => props.editNote(props)}>Edit</button>
       </div>
     </div>
     //   </div>

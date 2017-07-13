@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 import Draggable from 'react-draggable';
 
 import Modal from './Modal.jsx';
@@ -46,7 +47,11 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    
+    // $(() => {
+    //   $(".noteContainer").draggable({
+    //     handle: '.handle',
+    //   });
+    // });
   }
 
   addNote(event) {
@@ -55,8 +60,9 @@ class Board extends Component {
     i += 1;
     let title = 'Note #' + i;
     let text = 'Write Something!'
-    notes.push(<li key={i} className='note'><Note id={i} 
-    title={title} text={text} deleteNote={this.deleteNote} toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></li>);
+    notes.push(<li key={i} className='note'><Note id={i}
+      title={title} text={text} deleteNote={this.deleteNote} editNote={this.editNote} 
+      toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></li>);
 
     this.setState({ notes: notes, i: i });
   }
@@ -87,11 +93,7 @@ class Board extends Component {
   }
 
   editNote(e) {
-    e.preventDefault();
-
-    let newNotes = this.state.notes;
-    newNotes[index] = e.target.value;
-    this.setState({ notes: newNotes });
+    e.text = "Test";
   }
 
   textHandler(e, id) {
