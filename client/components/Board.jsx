@@ -32,7 +32,8 @@ class Board extends Component {
       notes: [],
     }
 
-    this.toggleModal = this.toggleModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
 
@@ -56,12 +57,12 @@ class Board extends Component {
     this.setState({ notes: notes });
   }
 
-  toggleModal() {
-    if (this.state.modalVisible === false) {
-      this.setState({ modal: true });
-    } else {
-      this.setState({ modal: false });
-    }
+  openModal() {
+    this.setState({ modal: true });
+  }
+
+  closeModal() {
+    this.setState({ modal: false });
   }
 
   render() {
@@ -77,8 +78,15 @@ class Board extends Component {
         </div>
         <div id="noteContainer">
           <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-            toggleModal={this.toggleModal} />
+            toggleModal={this.toggleModal} openModal={this.openModal} />
         </div>
+        {/*<div className="modal">
+          <Modal isOpen={this.modal} closeModal={() => this.closeModal()}>
+            <h1>Modal title</h1>
+            <p>hello</p>
+            <p><button onClick={() => this.closeModal()}>Close</button></p>
+          </Modal>
+        </div>*/}
       </div>
     )
   }
