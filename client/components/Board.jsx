@@ -4,9 +4,8 @@ import Draggable from 'react-draggable';
 
 import Modal from './Modal.jsx';
 import Note from './Note.jsx';
-import Styles from '../styles/styles.scss';
-import NoteStyles from '../styles/Note.scss';
-
+import Styles from './styles/styles.scss';
+import NoteStyles from './styles/Note.scss';
 
 /*
   Current Role of Board:
@@ -25,136 +24,69 @@ import NoteStyles from '../styles/Note.scss';
 */
 
 class Board extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      i: 0,
-      view: 'dash',
       modal: false,
       notes: [],
     }
 
-    // Binds
-    this.toggleModal = this.toggleModal.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
-    this.toggleMove = this.toggleMove.bind(this);
-    this.animate = this.animate.bind(this);
-
-
-    this.editNote = this.editNote.bind(this);
-    this.textHandler = this.textHandler.bind(this);
   }
 
-  componentDidMount() {
-    // $(() => {
-    //   $(".noteContainer").draggable({
-    //     handle: '.handle',
-    //   });
-    // });
-  }
-
-  addNote(event) {
+  addNote(e) {
     let notes = this.state.notes;
-    let i = this.state.i;
-    i += 1;
-    let title = 'Note #' + i;
-    let text = 'Write Something!'
-    notes.push(<li key={i} className='note'><Note id={i}
-      title={title} text={text} deleteNote={this.deleteNote} editNote={this.editNote} 
-      toggleModal={this.toggleModal} textHandler={this.textHandler} notes={this.state.notes} /></li>);
-
-    this.setState({ notes: notes, i: i });
+    notes.push({ text: this.note.value, key: Date.now() });
+    this.setState({ notes: notes });
+    this.note.value = "";
+    e.preventDefault();
   }
 
   deleteNote(e) {
-    e = e.toString();
     let notes = this.state.notes;
     notes = notes.filter(x => {
       return x.key !== e;
     });
-
     this.setState({ notes: notes });
   }
 
-  toggleModal() {
-    if (this.state.modalVisible === false) {
-      this.setState({ modal: true });
-    } else {
-      this.setState({ modal: false });
-    }
+  openModal() {
+    this.setState({ modal: true });
   }
 
-  editTitle(e, index) {
-
-    e.preventDefault();
-    let notes = this.state.notes;
-
+  closeModal() {
+    this.setState({ modal: false });
   }
-
-  editNote(e) {
-    e.text = "Test";
-  }
-
-  textHandler(e, id) {
-    // Handle Specific Note Text Updates
-    e.preventDefault();
-    let newText = e.target.value;
-    let target = notes.filter((x) => x.id === id);
-
-    this.setState({ noteText: newText });
-  }
-
-
-  editHandler() {
-    let newView = this.state.view;
-    if (newView === 'dash') {
-      newView = 'modal';
-      this.setState({ view: newView });
-    } else {
-      newView = 'dash';
-      this.setState({ view: newView });
-    }
-  }
-
-
-  toggleMove() {
-    $
-  }
-
-
-  animate() {
-    // Animation Trigger
-  }
-
 
   render() {
-    // if (this.state.modal === false) {
-    return (
-      <div id="board">
-        <h1 id="title"> Stick It to Me</h1>
-        <div id="addNoteContainer" style={Styles.addNoteContainer}>
-          <div>
-            <button id='addNoteButton' onClick={this.addNote}>Add A Note</button>
+    if (this.state.modal === false) {
+      return (
+        <div id="board">
+          <h1 id="title"> Stick It to Me</h1>
+          <div id="addNoteContainer" style={Styles.addNoteContainer}>
+            <form onSubmit={this.addNote}>
+              <input ref={(a) => this.note = a} placeholder="Do the Dishes"></input>
+              <button id='addNoteButton'>Add Sticky</button>
+            </form>
+          </div>
+          <div id="noteContainer">
+            <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+              toggleModal={this.toggleModal} openModal={this.openModal} />
           </div>
         </div>
-        <ul id="listContainer">
-          {this.state.notes}
-        </ul>
-      </div>
-    )
-    // } else {
-    //   return (
-    //     <div>
-    //       <button onClick={() => this.toggleModal()}>Open modal</button>
-    //       <Modal modal={this.state.modal} toggleModal={() => this.toggleModal()}>
-    //         <h1>Modal title</h1>
-    //         <p>hello</p>
-    //         <p><button onClick={() => this.toggleModal()}>Close</button></p>
-    //       </Modal>
-    //     </div>
-    //   )
-    // }
+      )
+    }
+    if (this.state.modal === true) {
+      return (
+        <div id="noteContainer">
+          <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+            toggleModal={this.toggleModal} openModal={this.openModal} />
+        </div>
+      )
+    }
   }
 }
 

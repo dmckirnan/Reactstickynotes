@@ -3,26 +3,29 @@
   padding: 0;
 }
 
-.noteContainer {
-  // width: 300px;
-  // height: 300px;
+img {
+  height: 75px;
+  width: 75px;
+  margin: 0 auto;
+  perspective: 1000px;
 }
 
-.noteTitle {
-  font-size:140%;
-  font-weight:bold;
+#listContainer {
+  display: inline-block;
 }
 
-.note {
-  font-family: 'Indie Flower', cursive;
-  text-decoration:none;
-  color:#000;
+#listContainer li {
   background:#ffc;
-  display:block;
+  display: inline-block;
+  font-family: 'Indie Flower', cursive;
+  font-size: 28px;
+  text-decoration:none;
+  text-align: center;
+  vertical-align: middle;
+  color:#000;
   height:10em;
   width:10em;
   padding:1em;
-  display: inline-block;
   margin-right: 35px;
   margin-bottom: 35px;
   /* Firefox */
@@ -68,18 +71,41 @@
   z-index:5;
 }
 
-.noteText {
-  border: 1px solid black;
-  border-radius: 3px;
+.noteContainer {
+  display: inline-block;
+  font-family: 'Indie Flower', cursive;
+  text-decoration:none;
+  color:#000;
 }
 
-.editContainer {
-  // justify-content: space-between;
-  // flex-direction: column;
-  // display: flex;
+.note {
+  background:#ffc;
+  display: inline-block;
+  font-family: 'Indie Flower', cursive;
+  font-size: 28px;
+  text-decoration:none;
+  color:#000;
+  height:10em;
+  width:10em;
+  padding:1em;
+  margin-right: 35px;
+  margin-bottom: 35px;
+  /* Firefox */
+  -moz-box-shadow:5px 5px 7px rgba(33,33,33,1);
+  /* Safari+Chrome */
+  -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  /* Opera */
+  box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+  -webkit-transform:rotate(-6deg);
+  -o-transform:rotate(-6deg);
+  -moz-transform:rotate(-6deg);
+  -moz-transition:-moz-transform .15s linear;
+  -o-transition:-o-transform .15s linear;
+  -webkit-transition:-webkit-transform .15s linear;
 }
 
-.editButton {
-  // justify-content: flex-end;
-  // display: flex;
+.deleteNoteButton {
+  border-radius: 5px;
+  color: black;
+  float: right;
 }

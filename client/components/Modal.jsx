@@ -1,5 +1,5 @@
 import React from 'react';
-import Styles from '../styles/Modal.scss';
+import Styles from './styles/Modal.scss';
 
 /*
 
@@ -16,14 +16,38 @@ import Styles from '../styles/Modal.scss';
 */
 
 const Modal = props => {
+  const handleBackgroundClick = e => {
+    if (e.target === e.currentTarget) props.hideModal();
+  };
+
+  const onOk = () => {
+    props.onOk();
+    props.hideModal();
+  };
+
+  const okButton = props.showOk
+    ? (
+      <button
+        onClick={onOk}
+        disabled={props.okDisabled}
+      >
+        {props.okText}
+      </button>
+    ) : null;
+
   return (
-    <div id="modal">
-      <div className="backdrop">
-        <button onClick={() => console.log('hi')}>Click Me</button>
-        <button onClick={props.toggleModal}>Exit Mode</button>
-      </div>
+    <div onClick={handleBackgroundClick}>
+      <header>
+        <h1>{props.title}</h1>
+
+        <button onClick={props.hideModal}>Close</button>
+      </header>
+
+      {props.children}
+
+      {okButton}
     </div>
-  )
-}
+  );
+};
 
 export default Modal;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Styles from '../styles/Note.scss';
-import Draggable from 'react-draggable';
+import Styles from './styles/Note.scss';
+// import Draggable from 'react-draggable';
 
 /*
 
@@ -13,34 +13,22 @@ import Draggable from 'react-draggable';
 
   Current Issues:
 
-  1) Indexing system may lead to issues at scale
-  2) Indexes do not readjust upon delete
-  3) No Modal Animation or functional Modal yet
+  1) No Drag and Drop
+  2) No Modal Animation or functional Modal yet
 
 */
 
 const Note = props => {
+  let notes = props.notes;
+  const createNote = (note) => {
+    return <li key={note.key} className='note'><img src="https://s-media-cache-ak0.pinimg.com/originals/77/5e/c9/775ec917700b2efd84501c11128fe813.png"></img><button className="deleteNoteButton" onClick={() => props.deleteNote(note.key)}><p>X</p></button>{note.text}</li>
+  }
+  let notesArr = notes.map(createNote);
+
   return (
-    // <Draggable handle="strong">
-    //   <div className="box no-cursor">
-    //     <strong className="cursor">Drag</strong>
-    <div className="noteContainer">
-      <div className="deleteNoteContainer">
-        <button className="deleteNoteButton" onClick={() => props.deleteNote(props.id)}>X</button>
-      </div>
-      <h2 className="noteTitle">{props.title}</h2>
-      {/*<div className="textEditContainer">
-        <input className="noteText" type="text" value={props.notes.text} onChange={props.textHandler}></input>
-      </div>*/}
-      <div className="textContainer">
-        <p className="text">{props.text}</p>
-      </div>
-      <div className="editContainer">
-        <button className="editButton" onClick={() => props.editNote(props)}>Edit</button>
-      </div>
-    </div>
-    //   </div>
-    // </Draggable>
+    <ul id="listContainer">
+      {notesArr}
+    </ul>
   )
 }
 
