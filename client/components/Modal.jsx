@@ -16,46 +16,38 @@ import Styles from './styles/Modal.scss';
 */
 
 const Modal = props => {
+  const handleBackgroundClick = e => {
+    if (e.target === e.currentTarget) props.hideModal();
+  };
 
-  if (this.props.isOpen) {
-    return (
-      <ReactCSSTransitionGroup transitionName={this.props.transitionName}>
-        <div className="modal">
-          {this.props.children}
-        </div>
-      </ReactCSSTransitionGroup>
-    );
-  } else {
-    return <ReactCSSTransitionGroup transitionName={this.props.transitionName} />;
-  }
-}
+  const onOk = () => {
+    props.onOk();
+    props.hideModal();
+  };
 
-  // if (props.modal === false) return null;
+  const okButton = props.showOk
+    ? (
+      <button
+        onClick={onOk}
+        disabled={props.okDisabled}
+      >
+        {props.okText}
+      </button>
+    ) : null;
 
-  // let modalStyle = {
-  //   position: 'absolute',
-  //   top: '50%',
-  //   left: '50%',
-  //   transform: 'translate(-50%, -50%)',
-  //   zIndex: '9999',
-  //   background: '#fff'
-  // }
+  return (
+    <div onClick={handleBackgroundClick}>
+      <header>
+        <h1>{props.title}</h1>
 
-  // let backdropStyle = {
-  //   position: 'absolute',
-  //   width: '100%',
-  //   height: '100%',
-  //   top: '0px',
-  //   left: '0px',
-  //   zIndex: '9998',
-  //   background: 'rgba(0, 0, 0, 0.3)'
-  // }
+        <button onClick={props.hideModal}>Close</button>
+      </header>
 
-  // return (
-  //   <div>
-  //     <div style={modalStyle}></div>
-  //     <div style={backdropStyle} onClick={() => props.closeModal()} />}
-  //     </div>
-  // )
+      {props.children}
+
+      {okButton}
+    </div>
+  );
+};
 
 export default Modal;

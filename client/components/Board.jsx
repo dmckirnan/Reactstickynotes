@@ -7,7 +7,6 @@ import Note from './Note.jsx';
 import Styles from './styles/styles.scss';
 import NoteStyles from './styles/Note.scss';
 
-
 /*
   Current Role of Board:
 
@@ -25,8 +24,8 @@ import NoteStyles from './styles/Note.scss';
 */
 
 class Board extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       modal: false,
       notes: [],
@@ -36,13 +35,11 @@ class Board extends Component {
     this.closeModal = this.closeModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
-
   }
 
   addNote(e) {
     let notes = this.state.notes;
     notes.push({ text: this.note.value, key: Date.now() });
-
     this.setState({ notes: notes });
     this.note.value = "";
     e.preventDefault();
@@ -53,7 +50,6 @@ class Board extends Component {
     notes = notes.filter(x => {
       return x.key !== e;
     });
-
     this.setState({ notes: notes });
   }
 
@@ -66,29 +62,31 @@ class Board extends Component {
   }
 
   render() {
-    // if (this.state.modal === false) {
-    return (
-      <div id="board">
-        <h1 id="title"> Stick It to Me</h1>
-        <div id="addNoteContainer" style={Styles.addNoteContainer}>
-          <form onSubmit={this.addNote}>
-            <input ref={(a) => this.note = a} placeholder="Do the Dishes"></input>
-            <button id='addNoteButton'>Add Sticky</button>
-          </form>
+    if (this.state.modal === false) {
+      return (
+        <div id="board">
+          <h1 id="title"> Stick It to Me</h1>
+          <div id="addNoteContainer" style={Styles.addNoteContainer}>
+            <form onSubmit={this.addNote}>
+              <input ref={(a) => this.note = a} placeholder="Do the Dishes"></input>
+              <button id='addNoteButton'>Add Sticky</button>
+            </form>
+          </div>
+          <div id="noteContainer">
+            <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+              toggleModal={this.toggleModal} openModal={this.openModal} />
+          </div>
         </div>
+      )
+    }
+    if (this.state.modal === true) {
+      return (
         <div id="noteContainer">
           <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
             toggleModal={this.toggleModal} openModal={this.openModal} />
         </div>
-        {/*<div className="modal">
-          <Modal isOpen={this.modal} closeModal={() => this.closeModal()}>
-            <h1>Modal title</h1>
-            <p>hello</p>
-            <p><button onClick={() => this.closeModal()}>Close</button></p>
-          </Modal>
-        </div>*/}
-      </div>
-    )
+      )
+    }
   }
 }
 
