@@ -9,12 +9,10 @@ class Board extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      modal: false,
       notes: [],
     }
 
     this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
   }
@@ -36,12 +34,17 @@ class Board extends Component {
   }
 
   openModal() {
-    this.setState({ modal: true });
+    const text = this.refs.input.value;
+    ModalManager.open(<MyModal text={text} onRequestClose={() => true} />);
   }
 
-  closeModal() {
-    this.setState({ modal: false });
-  }
+  // openModal() {
+  //   this.setState({ modal: true });
+  // }
+
+  // closeModal() {
+  //   this.setState({ modal: false });
+  // }
 
   render() {
     if (this.state.modal === false) {
@@ -54,15 +57,15 @@ class Board extends Component {
               <button id='addNoteButton'>Add Sticky</button>
             </form>
           </div>
-            <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-              toggleModal={this.toggleModal} openModal={this.openModal} />
+          <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+            toggleModal={this.toggleModal} openModal={this.openModal} />
         </div>
       )
     }
     if (this.state.modal === true) {
       return (
-          <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-            toggleModal={this.toggleModal} openModal={this.openModal} />
+        <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+          toggleModal={this.toggleModal} openModal={this.openModal} />
       )
     }
   }
