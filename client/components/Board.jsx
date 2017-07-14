@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import Modal from './Modal.jsx';
 import Note from './Note.jsx';
 
 import Styles from './styles/styles.scss';

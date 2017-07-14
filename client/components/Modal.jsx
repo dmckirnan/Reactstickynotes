@@ -1,23 +1,17 @@
 import React from 'react';
+import Note from './Note.jsx';
 
-const Modal = (
-  <div className="static-modal">
-    <Modal.Dialog>
-      <Modal.Header>
-        <Modal.Title>Modal title</Modal.Title>
-      </Modal.Header>
-
-      <Modal.Body>
-        One fine body...
-      </Modal.Body>
-
-      <Modal.Footer>
-        <Button>Close</Button>
-        <Button bsStyle="primary">Save changes</Button>
-      </Modal.Footer>
-
-    </Modal.Dialog>
-  </div>
-);
+const Modal = props => {
+  return (
+    <div className="modal fade">
+      <div className="modal-dialog">
+        <div className="modal-content">
+          <ModalHeader title="Modal Title" />
+          <ModalBody />
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default Modal;
