@@ -1,0 +1,64 @@
+body {
+  background: url('https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX2245666.jpg');
+}
+
+html {
+  font-family:arial,sans-serif;
+  font-size:100%;
+  margin:3px;
+  color:#fff;
+}
+
+#title {
+  font-family: 'Indie Flower', cursive;
+  text-decoration:none;
+  color: white;
+  text-shadow: 0 0 10px #000000;
+  font-size: 48px;
+  padding-bottom: 10px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: center;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+}
+
+#addNoteContainer {
+  margin-bottom: 25px;
+  width: 100%;
+  float: right;
+}
+
+#addNoteContainer form {
+  width: 100%;
+}
+
+#addNoteContainer input {
+  font-size: 18px;
+  padding: 5px;
+  line-height: 30px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+#addNoteContainer button {
+  height: 25px;
+  width: 100px;
+  padding: 2px;
+  border-radius: 3px;
+  margin-left: 25px;
+  background-color: lightblue;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+}
+
+#addNoteContainer button:hover {
+  background-color: #d3d3d3;
+  color: white;
+  text-shadow: 0 0 10px #000000;
+}
+
+// #listContainer {
+//   height: 1200px;
+//   width: 100%;
+// }
