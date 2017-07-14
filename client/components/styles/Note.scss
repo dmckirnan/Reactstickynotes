@@ -35,19 +35,6 @@ $scale: scale(2);
   100% {transform:scale(2) rotate(360deg); }
 }
 
-@-webkit-keyframes note {
-  100% {background-color: lightseagreen;}
-}
-@-moz-keyframes note {
-  100% {background-color: lightseagreen;}
-}
-@-o-keyframes note {
-  100% {background-color: lightseagreen;}
-}
-@keyframes note {
-  100% {background-color: lightseagreen;}
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -146,7 +133,7 @@ $scale: scale(2);
 
 #listContainer li:hover, #listContainer li:focus {
   z-index:5;
-  background-color: lightseagreen;
+  background-color: lightskyblue;
 
   /* Spepcific Browser Shadows & Transforms */
   box-shadow: $hover-shadow;

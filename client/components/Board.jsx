@@ -5,22 +5,6 @@ import Styles from './styles/styles.scss';
 import NoteStyles from './styles/Note.scss';
 
 
-/*
-  Current Role of Board:
-
-  1) Parent Component / Top Level Component / State Store
-  2) Contains All Necessary Methods for Note Add, Remove, Text Edit, Modal Toggle, Animation
-  3) Renders AddNoteButton, Note, and Modal
-
-  Current Issues:
-
-  1) Lacks Styling
-  2) Modal is not an actual Modal, it's simply another view.
-  3) Drag and Drop Functionality Not Yet Done
-  4) Animation Does Not Yet Exist
-
-*/
-
 class Board extends Component {
   constructor(props) {
     super(props);
