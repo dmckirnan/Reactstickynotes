@@ -17,25 +17,21 @@ $scale: scale(2);
 
 @-webkit-keyframes rotate {
   0% { -webkit-transform:scale(1) rotate(0deg); }
-  // 50% { -webkit-transform:scale(1.5) rotate(180deg); }
   100% {-webkit-transform:scale(2) rotate(360deg); }
 }
 
 @-moz-keyframes rotate {
   0% { transform:scale(1) rotate(0deg); }
-  // 50% { transform:scale(1.5) rotate(180deg); }
   100% {transform:scale(2) rotate(360deg); }
 }
 
 @-o-keyframes rotate {
   0% { transform:scale(1) rotate(0deg); }
-  // 50% { transform:scale(1.5) rotate(180deg); }
   100% {transform:scale(2) rotate(360deg); }
 }
 
 @keyframes rotate {
   0% { transform:scale(1) rotate(0deg); }
-  // 50% { transform:scale(1.5) rotate(180deg); }
   100% {transform:scale(2) rotate(360deg); }
 }
 
@@ -161,8 +157,14 @@ $scale: scale(2);
   -moz-transform: $scale;
   -o-transform: $scale;
   -ms-transform: $scale;
-  transform-origin: top left;
+
+  
   -webkit-transform-origin: top left;
+  -moz-transform-origin: top left;
+  -o-transform-origin: top left;
+  -ms-transform-origin: top left;
+  transform-origin: top left;
+
 
   -webkit-animation-name: rotate;
   -webkit-animation-duration: 1s;
@@ -187,6 +189,7 @@ $scale: scale(2);
 }
 
 #listContainer li:hover:nth-child(n+6), li:focus:nth-child(n+6) {
+  /* Alternate Origin for Edge Considerations */
   -webkit-transform-origin: bottom center;
   -moz-transform-origin: bottom center;
   -o-transform-origin: bottom center;
@@ -195,6 +198,7 @@ $scale: scale(2);
 }
 
 #listContainer li:hover:nth-child(6n), li:focus:nth-child(6n) {
+  /* Alternate Origin for Edge Considerations */
   -webkit-transform-origin: top right;
   -moz-transform-origin: top right;
   -o-transform-origin: top right;
@@ -203,6 +207,7 @@ $scale: scale(2);
 }
 
 #listContainer li:hover:nth-child(7n), li:focus:nth-child(7n) {
+  /* Alternate Origin for Edge Considerations */
   -webkit-transform-origin: top left;
   -moz-transform-origin: top left;
   -o-transform-origin: top left;
