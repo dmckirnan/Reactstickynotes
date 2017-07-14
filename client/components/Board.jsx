@@ -47,7 +47,6 @@ class Board extends Component {
   // }
 
   render() {
-    if (this.state.modal === false) {
       return (
         <div id="board">
           <h1 id="title"> Stick It to Me</h1>
@@ -62,13 +61,12 @@ class Board extends Component {
         </div>
       )
     }
-    if (this.state.modal === true) {
-      return (
-        <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-          toggleModal={this.toggleModal} openModal={this.openModal} />
-      )
-    }
-  }
+    // if (this.state.modal === true) {
+    //   return (
+    //     <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
+    //       toggleModal={this.toggleModal} openModal={this.openModal} />
+    //   )
+    // }
 }
 
 export default Board;
