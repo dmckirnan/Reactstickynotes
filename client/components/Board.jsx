@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
-import Draggable from 'react-draggable';
 
 import Modal from './Modal.jsx';
 import Note from './Note.jsx';
+
 import Styles from './styles/styles.scss';
 import NoteStyles from './styles/Note.scss';
+
 
 /*
   Current Role of Board:
@@ -72,19 +72,15 @@ class Board extends Component {
               <button id='addNoteButton'>Add Sticky</button>
             </form>
           </div>
-          <div id="noteContainer">
             <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
               toggleModal={this.toggleModal} openModal={this.openModal} />
-          </div>
         </div>
       )
     }
     if (this.state.modal === true) {
       return (
-        <div id="noteContainer">
           <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
             toggleModal={this.toggleModal} openModal={this.openModal} />
-        </div>
       )
     }
   }
