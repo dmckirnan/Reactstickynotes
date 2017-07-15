@@ -12,6 +12,7 @@ $opera-trans: -o-transform 1s ease-in-out;
 $webkit-trans: -webkit-transform 1s ease-in-out;
 $hover-shadow: 10px 10px 7px rgba(0,0,0,.7);
 $scale: scale(2);
+$smallScale: scale(1.2);
 
 /* Unique Browser Keyframes to Animate Note */
 
@@ -131,9 +132,9 @@ $scale: scale(2);
   transform: $nth-rotate;
 }
 
-#listContainer li:hover, #listContainer li:focus {
+.note {
   z-index:5;
-  background-color: lightskyblue;
+  background-color: lightskyblue !important;
 
   /* Spepcific Browser Shadows & Transforms */
   box-shadow: $hover-shadow;
@@ -157,49 +158,43 @@ $scale: scale(2);
   -webkit-animation-duration: 1s;
   -webkit-animation-iteration-count: 1;
   -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-fill-mode: forwards;
   -moz-animation-name: rotate;
   -moz-animation-duration: 1s;
   -moz-animation-iteration-count: 1;
   -moz-animation-timing-function: ease-in-out;
+  -moz-animation-fill-mode: fowards;
   -ms-animation-name: rotate;
   -ms-animation-duration: 1s;
   -ms-animation-iteration-count: 1;
   -ms-animation-timing-function: ease-in-out;
+  -ms-animation-fill-mode: fowards;
   -o-animation-name: rotate;
   -o-animation-duration: 1s;
   -o-animation-iteration-count: 1;
   -o-animation-timing-function: ease-in-out;
+  -o-animation-fill-mode: fowards;
   animation-name: rotate;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-timing-function: ease-in-out;
+  animation-fill-mode: fowards;
 }
 
-#listContainer li:hover:nth-child(n+6), li:focus:nth-child(n+6) {
-  /* Alternate Origin for Edge Considerations */
-  -webkit-transform-origin: bottom center;
-  -moz-transform-origin: bottom center;
-  -o-transform-origin: bottom center;
-  -ms-transform-origin: bottom center;
-  transform-origin: bottom center;
-}
+#listContainer li:hover, #listContainer li:focus {
+  z-index:5;
 
-#listContainer li:hover:nth-child(6n), li:focus:nth-child(6n) {
-  /* Alternate Origin for Edge Considerations */
-  -webkit-transform-origin: top right;
-  -moz-transform-origin: top right;
-  -o-transform-origin: top right;
-  -ms-transform-origin: top right;
-  transform-origin: top right;
-}
-
-#listContainer li:hover:nth-child(7n), li:focus:nth-child(7n) {
-  /* Alternate Origin for Edge Considerations */
-  -webkit-transform-origin: top left;
-  -moz-transform-origin: top left;
-  -o-transform-origin: top left;
-  -ms-transform-origin: top left;
-  transform-origin: top left;
+  /* Spepcific Browser Shadows & Transforms */
+  -webkit-box-shadow: $hover-shadow;
+  -moz-box-shadow: $hover-shadow;
+  -ms-box-shadow: $hover-shadow;
+  -o-box-shadow: $hover-shadow;
+  box-shadow: $hover-shadow;
+  -webkit-transform: $smallScale;
+  -moz-transform: $smallScale;
+  -o-transform: $smallScale;
+  -ms-transform: $smallScale;
+  transform: $smallScale;
 }
 
 #listContainer p {
@@ -208,7 +203,7 @@ $scale: scale(2);
 }
 
 .topBar {
-  display: inline;
+  display: inline-block;
   margin: 0;
   padding: 0;
 }
@@ -217,6 +212,7 @@ $scale: scale(2);
   position: absolute;
   margin: 0 auto;
   top: 0;
+  right: 200;
   height: 75px;
   perspective: 1000px;
 }
@@ -230,4 +226,12 @@ $scale: scale(2);
   color: black;
   text-decoration: none;
   text-shadow: 0 1px 0 #000000;
+}
+
+.zoom {
+  position: absolute;
+  margin-left: 20px;
+  font-size: 14px;
+  top: 20;
+  right: 50;
 }

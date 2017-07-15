@@ -12,39 +12,46 @@ class Board extends Component {
       notes: [],
     }
 
-    this.openModal = this.openModal.bind(this);
     this.addNote = this.addNote.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
+    this.openNote = this.openNote.bind(this);
   }
 
   addNote(e) {
-    let notes = this.state.notes;
-    notes.push({ text: this.note.value, key: Date.now() });
+    // Make a Copy of State 
+    const obj = Object.assign({}, this.state);
+
+    let notes = obj.notes;
+    notes.push({ text: this.note.value, key: Date.now(), name: 'none' });
     this.setState({ notes: notes });
+
+    // Reset Input Field / Prevent Page Reload
     this.note.value = "";
     e.preventDefault();
   }
 
   deleteNote(e) {
-    let notes = this.state.notes;
+    // Make a Copy of State 
+    const obj = Object.assign({}, this.state);
+
+    let notes = obj.notes;
     notes = notes.filter(x => {
       return x.key !== e;
     });
     this.setState({ notes: notes });
   }
 
-  openModal() {
-    const text = this.refs.input.value;
-    ModalManager.open(<MyModal text={text} onRequestClose={() => true} />);
+  openNote (e) {
+    // Make a Copy of State
+    const obj = Object.assign({}, this.state);
+
+    let notes = obj.notes;
+    notes = notes.map(x => {
+      if (x.key === e) x.name === 'note' ? x.name = 'none' : x.name = 'note';
+      return x;
+    });
+    this.setState({ notes: notes });
   }
-
-  // openModal() {
-  //   this.setState({ modal: true });
-  // }
-
-  // closeModal() {
-  //   this.setState({ modal: false });
-  // }
 
   render() {
       return (
@@ -56,17 +63,10 @@ class Board extends Component {
               <button id='addNoteButton'>Add Sticky</button>
             </form>
           </div>
-          <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-            toggleModal={this.toggleModal} openModal={this.openModal} />
+          <Note openNote={this.openNote} notes={this.state.notes} deleteNote={this.deleteNote} />
         </div>
       )
     }
-    // if (this.state.modal === true) {
-    //   return (
-    //     <Note notes={this.state.notes} deleteNote={this.deleteNote} editNote={this.editNote}
-    //       toggleModal={this.toggleModal} openModal={this.openModal} />
-    //   )
-    // }
 }
 
 export default Board;
