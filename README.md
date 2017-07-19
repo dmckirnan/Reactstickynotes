@@ -1,4 +1,4 @@
-# stickynote-challenge
+# stickynotes
 Interactive Sticky Note Application
 
 ****NPM INSTALL to Retrieve All Necessary Modules****
